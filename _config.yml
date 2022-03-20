@@ -1,7 +1,7 @@
 # Setup
-title:               Lanyon
-tagline:             'A Jekyll theme'
-description:         'Embedded Journey blog.'
+title:               Embedded Journey
+tagline:             'Blog'
+description:         'Blog about embedded software development, embedded Linux, QEMU, Qt and other stuff.'
 url:                 https://straxy.github.io
 baseurl:             ''
 paginate:            5
