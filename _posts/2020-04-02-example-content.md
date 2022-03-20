@@ -1,8 +1,7 @@
 ---
 layout: post
 title: Example content
-tags:
-    - testTAG2
+tags: linux
 ---
 
 
