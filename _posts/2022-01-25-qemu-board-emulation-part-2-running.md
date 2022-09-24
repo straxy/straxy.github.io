@@ -362,7 +362,8 @@ After the `tap` interface has been created the QEMU can be started.
 
 The QEMU with networking can be started in the following way:
 
-```bash# Start QEMU with networking
+```bash
+# Start QEMU with networking
 $ qemu-system-arm -M vexpress-a9 -m 1G \
                   -kernel $UBOOT -nographic \
                   -net nic -net tap,ifname=qemu-tap0,script=no
