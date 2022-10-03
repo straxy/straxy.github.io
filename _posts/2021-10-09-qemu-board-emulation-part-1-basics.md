@@ -6,7 +6,7 @@ tags: linux qemu u-boot
 
 *This is part 1 of the QEMU Board Emulation post series.*
 
-In the [previous post](https://straxy.blogspot.com/2020/12/qemu-qemu-board-emulation-part-0.html) I presented some of the goals for doing this work with QEMU.
+In the [previous post](https://straxy.github.io/2020/12/29/qemu-board-emulation-part-0/) I presented some of the goals for doing this work with QEMU.
 
 In this post I will cover the following things
 
@@ -527,4 +527,4 @@ Once kernel boots, it will run the `hello` application and print "Hello, world!"
 
 In this post the basic steps building U-Boot and Linux kernel were covered. This is still far from the actual use-case for an embedded Linux system, since root filesystem is missing.
 
-The root filesystem will be covered in the [next post](https://straxy.blogspot.com/2022/01/qemu-board-emulation-part-2-running.html"), together with steps for running bootloader and Linux kernel from different mediums, which will be similar to the way and embedded Linux is used on real development boards.
+The root filesystem will be covered in the [next post](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/"), together with steps for running bootloader and Linux kernel from different mediums, which will be similar to the way and embedded Linux is used on real development boards.

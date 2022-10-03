@@ -6,7 +6,7 @@ tags: yocto linux qemu
 
 *This is part 4 of the QEMU Board Emulation post series.*
 
-In parts [2](https://straxy.blogspot.com/2022/01/qemu-board-emulation-part-2-running.html) and [3](https://straxy.blogspot.com/2022/02/qemu-board-emulation-part-3-vexpress-gui.html) of this post series the complete boot procedure from SD card has been presented, as well as how to configure kernel support required to enable graphical display for Vexpress-A9 board.
+In parts [2](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) and [3](https://straxy.github.io/2022/02/06/qemu-board-emulation-part-3-vexpress-gui/) of this post series the complete boot procedure from SD card has been presented, as well as how to configure kernel support required to enable graphical display for Vexpress-A9 board.
 
 In both posts Ubuntu was used as root filesystem. Using Ubuntu as root filesystem is simple and fast to use, but it also has a lot of packages which are not necessary.
 
@@ -86,19 +86,19 @@ Machine has definitions output images that should be built, as well as parameter
 
 # U-boot recipe {#uboot}
 
-The goal with this exercise is to use the same software versions as in [part 2](https://straxy.blogspot.com/2022/01/qemu-board-emulation-part-2-running.html) of the blog post series.
+The goal with this exercise is to use the same software versions as in [part 2](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) of the blog post series.
 
 The `u-boot` related recipes are in [recipes-bsp](https://github.com/straxy/meta-vexpress/tree/main/recipes-bsp) directory.
 
-The `u-boot` directory holds the main `u-boot` recipe, which targets a specific git commit in order to use the same version as in [part 2](https://straxy.blogspot.com/2022/01/qemu-board-emulation-part-2-running.html) of the blog post series.
+The `u-boot` directory holds the main `u-boot` recipe, which targets a specific git commit in order to use the same version as in [part 2](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) of the blog post series.
 
-In the `u-boot-scr` directory is recipe used to build a u-boot script. The u-boot script is a special script run by U-Boot at boot. This way, all of the commands that were entered manually in [part 2](https://straxy.blogspot.com/2022/01/qemu-board-emulation-part-2-running.html) of the blog post series will be automatically executed.
+In the `u-boot-scr` directory is recipe used to build a u-boot script. The u-boot script is a special script run by U-Boot at boot. This way, all of the commands that were entered manually in [part 2](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) of the blog post series will be automatically executed.
 
 The commands are in [boot.cmd](https://github.com/straxy/meta-vexpress/blob/main/recipes-bsp/u-boot-scr/files/boot.cmd) file, and instructions on how this script can be manually built are in the `do_compile` step of the [u-boot-scr.bb](https://github.com/straxy/meta-vexpress/blob/main/recipes-bsp/u-boot-scr/u-boot-scr.bb) recipe.
 
 # Linux kernel recipe {#linux}
 
-Linux recipe is stored in the [recipes-kernel](https://github.com/straxy/meta-vexpress/tree/main/recipes-kernel/linux). It selects the appropriate git commit in order to have the same version as in [part 2](https://straxy.blogspot.com/2022/01/qemu-board-emulation-part-2-running.html) of the blog post series.
+Linux recipe is stored in the [recipes-kernel](https://github.com/straxy/meta-vexpress/tree/main/recipes-kernel/linux). It selects the appropriate git commit in order to have the same version as in [part 2](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) of the blog post series.
 
 # Image recipe {#image}
 

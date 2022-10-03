@@ -6,7 +6,7 @@ tags: ubuntu graphics linux qemu
 
 *This is part 3 of the QEMU Board Emulation post series.*
 
-In the [previous post](https://straxy.blogspot.com/2022/01/qemu-board-emulation-part-2-running.html) the complete boot procedure from SD card or network boot has been presented.
+In the [previous post](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) the complete boot procedure from SD card or network boot has been presented.
 
 In this post I will cover the following things
 1. [Modifying Linux kernel configuration](#kernel)
@@ -119,7 +119,7 @@ CONFIG_LOGO
     [*] Bootup logo
 ```
 
-After the kernel configuration is modified, kernel has to be rebuilt again and all related files copied to the SD card (kernel image and kernel modules). For detailed instructions consult [part 1](https://straxy.blogspot.com/2021/10/qemu-board-emulation-part-1-basics.html) and [part 2](https://straxy.blogspot.com/2022/01/qemu-board-emulation-part-2-running.html) of this series. If scripts from [github](https://github.com/straxy/qemu-board-emulation) are used, then `prepare-qemu.bash` script has to be executed after the Linux kernel is rebuilt in order to pull new image and kernel modules to the SD card.
+After the kernel configuration is modified, kernel has to be rebuilt again and all related files copied to the SD card (kernel image and kernel modules). For detailed instructions consult [part 1](https://straxy.github.io/2021/10/09/qemu-board-emulation-part-1-basics/) and [part 2](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) of this series. If scripts from [github](https://github.com/straxy/qemu-board-emulation) are used, then `prepare-qemu.bash` script has to be executed after the Linux kernel is rebuilt in order to pull new image and kernel modules to the SD card.
 
 ## Updating kernel config manually
 
@@ -149,9 +149,9 @@ $ qemu-system-arm -M vexpress-a9 -m 1G -kernel $UBOOT \
                   -serial mon:stdio
 ```
 
-> _**NOTE:**_ It is assumed that network is enabled in the host according to [previous instructions](https://straxy.blogspot.com/2022/01/qemu-board-emulation-part-2-running.html#network).
+> _**NOTE:**_ It is assumed that network is enabled in the host according to [previous instructions](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/#network).
 
-Please note that the command for starting QEMU has a significant difference compared to instructions from [part 1](https://straxy.blogspot.com/2021/10/qemu-board-emulation-part-1-basics.html) and [part 2](https://straxy.blogspot.com/2022/01/qemu-board-emulation-part-2-running.html) of blog series: instead of passing parameter `-nographics` the parameter `-serial mon:stdio` is used.
+Please note that the command for starting QEMU has a significant difference compared to instructions from [part 1](https://straxy.github.io/2021/10/09/qemu-board-emulation-part-1-basics/) and [part 2](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/#network) of blog series: instead of passing parameter `-nographics` the parameter `-serial mon:stdio` is used.
 
 This will enable graphical window to appear and serial output for U-Boot will still go to terminal window from where QEMU is started. Serial output direction for Linux kernel can be controlled by specifying `console` parameter in the `bootargs` U-Boot variable:
 

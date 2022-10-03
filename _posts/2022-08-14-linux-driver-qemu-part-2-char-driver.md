@@ -6,7 +6,7 @@ tags: memory-mapped ubuntu yocto device-tree linux qemu device-driver
 
 *This is part 2 of the Linux device driver development post series.*
 
-In the [previous post](https://straxy.blogspot.com/2022/06/linux-driver-qemu-part-1-custom-device.html) I presented the steps for creating a custom memory-mapped peripheral in QEMU.
+In the [previous post](https://straxy.github.io/2022/06/25/linux-driver-qemu-part-1-custom-device/) I presented the steps for creating a custom memory-mapped peripheral in QEMU.
 
 In this post I will cover the following things
 
@@ -383,4 +383,4 @@ The driver itself handles interrupt, but we have not gone into processing that e
 
 <br />
 
-Next step is to develop a user space application which will be able to initialize device using the driver, as well as receive information about received interrupt and process updated data. This will be done in next blog post in this series.
+Next step is to develop a user space application which will be able to initialize device using the driver, as well as receive information about received interrupt and process updated data. This will be done in [next blog post](#) in this series.

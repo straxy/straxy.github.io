@@ -6,7 +6,7 @@ tags: memory-mapped device-tree linux qemu u-boot
 
 *This is part 1 of the Linux device driver development post series.*
 
-In the [previous post](https://straxy.blogspot.com/2022/05/linux-device-driver-development-qemu.html) I presented some of the goals for doing this work with QEMU.
+In the [previous post](https://straxy.github.io/2022/05/19/linux-device-driver-development-qemu/) I presented some of the goals for doing this work with QEMU.
 
 In this post I will cover the following things
 
@@ -470,4 +470,4 @@ Using this process many different components can be implemented.
 
 <br />
 
-In the [next](https://straxy.blogspot.com/2022/07/linux-driver-qemu-part-2-char-driver.html) blog post I will show process of development of Linux device driver for this component.
+In the [next](https://straxy.github.io/2022/08/14/linux-driver-qemu-part-2-char-driver/) blog post I will show process of development of Linux device driver for this component.

@@ -26,13 +26,13 @@ These series of posts will introduce QEMU board emulation for ARM architecture. 
 * <del>OrangePI PC</del> - covered in detail in [QEMU docs](https://qemu.readthedocs.io/en/latest/system/arm/orangepi.html)
 * <del>IMX6 SabreLite</del> - covered in detail in [QEMU docs](https://qemu.readthedocs.io/en/latest/system/arm/sabrelite.html)
 
-After this, I will go through creating new QEMU devices and developing drivers and userspace applications for them, in [the following](https://straxy.blogspot.com/2022/05/linux-device-driver-development-qemu.html) post series.
+After this, I will go through creating new QEMU devices and developing drivers and userspace applications for them, in [the following](https://straxy.github.io/2022/05/19/linux-device-driver-development-qemu/) post series.
 
 <br />
 
 Quick links to other posts in the series:
 
-* [Part 1 - Basics](https://straxy.blogspot.com/2021/10/qemu-board-emulation-part-1-basics.html) : covers basic steps for preparing the development environment, downloading and building U-Boot bootloader and Linux kernel
-* [Part 2 - Running the system](https://straxy.blogspot.com/2022/01/qemu-board-emulation-part-2-running.html) : covers root filesystem handling and booting from SD card or over network (TFTP+NFS)
-* [Part 3 - Vexpress GUI](https://straxy.blogspot.com/2022/02/qemu-board-emulation-part-3-vexpress-gui.html) : covers Linux kernel configuration in an attempt to display graphics
-* [Part 4 - Vexpress Yocto](https://straxy.blogspot.com/2022/04/qemu-board-emulation-part-4-vexpress-a9.html) : covers Yocto configuration for parts 2 and 3 of the blog series, so distribution and image can be built
+* [Part 1 - Basics](https://straxy.github.io/2021/10/09/qemu-board-emulation-part-1-basics/) : covers basic steps for preparing the development environment, downloading and building U-Boot bootloader and Linux kernel
+* [Part 2 - Running the system](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) : covers root filesystem handling and booting from SD card or over network (TFTP+NFS)
+* [Part 3 - Vexpress GUI](https://straxy.github.io/2022/02/06/qemu-board-emulation-part-3-vexpress-gui/) : covers Linux kernel configuration in an attempt to display graphics
+* [Part 4 - Vexpress Yocto](https://straxy.github.io/2022/04/23/qemu-board-emulation-part-4-vexpress-yocto/) : covers Yocto configuration for parts 2 and 3 of the blog series, so distribution and image can be built

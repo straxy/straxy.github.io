@@ -4,7 +4,7 @@ title: Learning Linux device driver development using QEMU - Introduction
 tags: memory-mapped linux qemu i2c device-driver userspace
 ---
 
-In the previous blog series [QEMU board emulation](https://straxy.blogspot.com/2020/12/qemu-qemu-board-emulation-part-0.html) I introduced simple methods to prepare and run a QEMU image for board emulation. Target board was Versatile express and mainline U-Boot and Linux kernel were used for testing. The goal of that blog series is to show how to use QEMU for board emulation.
+In the previous blog series [QEMU board emulation](https://straxy.github.io/2020/12/29/qemu-board-emulation-part-0/) I introduced simple methods to prepare and run a QEMU image for board emulation. Target board was Versatile express and mainline U-Boot and Linux kernel were used for testing. The goal of that blog series is to show how to use QEMU for board emulation.
 
 <br/>
 
@@ -33,5 +33,5 @@ In both cases I will also cover details on how to write a simple memory-mapped a
 
 Quick links to other posts in the series:
 
-* [Part 1 - Developing custom memory-mapped peripheral in QEMU](https://straxy.blogspot.com/2022/06/linux-driver-qemu-part-1-custom-device.html) : covers basic steps creating a new memory-mapped peripheral in QEMU, how to integrate it and simple testing.
-* [Part 2 - Developing Linux device driver for QEMU custom memory-mapped peripheral](https://straxy.blogspot.com/2022/07/linux-driver-qemu-part-2-char-driver.html) : covers structure of a Linux device driver that can be used to initialize and interact with developed custom memory-mapped device.
+* [Part 1 - Developing custom memory-mapped peripheral in QEMU](https://straxy.github.io/2022/06/25/linux-driver-qemu-part-1-custom-device/) : covers basic steps creating a new memory-mapped peripheral in QEMU, how to integrate it and simple testing.
+* [Part 2 - Developing Linux device driver for QEMU custom memory-mapped peripheral](https://straxy.github.io/2022/08/14/linux-driver-qemu-part-2-char-driver/) : covers structure of a Linux device driver that can be used to initialize and interact with developed custom memory-mapped device.
