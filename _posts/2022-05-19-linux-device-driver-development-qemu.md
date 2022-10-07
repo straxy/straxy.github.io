@@ -35,3 +35,4 @@ Quick links to other posts in the series:
 
 * [Part 1 - Developing custom memory-mapped peripheral in QEMU](https://straxy.github.io/2022/06/25/linux-driver-qemu-part-1-custom-device/) : covers basic steps creating a new memory-mapped peripheral in QEMU, how to integrate it and simple testing.
 * [Part 2 - Developing Linux device driver for QEMU custom memory-mapped peripheral](https://straxy.github.io/2022/08/14/linux-driver-qemu-part-2-char-driver/) : covers structure of a Linux device driver that can be used to initialize and interact with developed custom memory-mapped device.
+* [Part 3 - Userspace application for custom QEMU memory-mapped peripheral](https://straxy.blogspot.com/2022/10/linux-driver-qemu-part-3-userspace.html) : covers a simple C++/CMake userspace application which interacts with the device using sysfs attributes.

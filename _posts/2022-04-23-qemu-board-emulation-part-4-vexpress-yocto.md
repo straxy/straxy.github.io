@@ -143,7 +143,7 @@ $ source setup-environment <build_dir>
 
 where `<build_dir>` is custom directory where build will be performed and output files stored. After this command is executed current directory is automatically changed to `build_dir`.
 
-## Building
+## Building and running images {#qemu}
 
 The build is started using the following command
 
