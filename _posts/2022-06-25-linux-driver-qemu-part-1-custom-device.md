@@ -10,17 +10,18 @@ In the [previous post](https://straxy.github.io/2022/05/19/linux-device-driver-d
 
 In this post I will cover the following things
 
-1. [Designing custom memory-mapped device in QEMU](#mmdev)
-   * [Fitting into Vexpress-A9 memory map](#map)
-2. [QEMU implementation](#qemu)
-   * [Register mapping](#regmap)
-   * [QEMU timers](#timer)
-   * [QEMU interrupt handling](#irq)
-3. [Integrating with board file and build system](#board)
-4. [Testing developed peripheral](#test)
-5. [Summary](#summary)
+- [Designing custom memory-mapped device in QEMU](#designing-custom-memory-mapped-device-in-qemu)
+  - [Register map](#register-map)
+  - [Fitting into Vexpress-A9 memory map](#fitting-into-vexpress-a9-memory-map)
+- [QEMU implementation](#qemu-implementation)
+  - [Register mapping](#register-mapping)
+  - [QEMU timers](#qemu-timers)
+  - [QEMU interrupt handling](#qemu-interrupt-handling)
+- [Integrating with board file and build system](#integrating-with-board-file-and-build-system)
+- [Testing developed peripheral](#testing-developed-peripheral)
+- [Summary](#summary)
 
-# Designing custom memory-mapped device in QEMU {#mmdev}
+# Designing custom memory-mapped device in QEMU
 
 QEMU can emulate many different peripherals. More importantly, it is possible to create new peripherals that are emulated.
 
@@ -170,7 +171,7 @@ Bit values of `DATA` register are shown in the following table
   </tbody>
 </table>
 
-## Fitting into Vexpress-A9 memory map {#map}
+## Fitting into Vexpress-A9 memory map
 
 In order to instantiate and use developed memory-mapped component, we need to integrate it into the Vexpress-A9 memory map and connect it to interrupt controller.
 
@@ -178,13 +179,13 @@ Looking at the [memory map](https://developer.arm.com/documentation/dui0447/j/pr
 
 Also, we need an interrupt line for the custom component. Again, looking at the [documentation](https://developer.arm.com/documentation/dui0447/j/hardware-description/interrupt-signals?lang=en), there are several "reserved" interrupt lines which we can use. In this example, I chose interrupt line **29**.
 
-# QEMU implementation {#qemu}
+# QEMU implementation
 
 Details of implementation of a new memory-mapped device in QEMU will be shown in this section. Main points will be displayed, so someone can use it as instructions for creating a new device.
 
 The device will be described by it's registers and added to the Versatile Express memory map.
 
-## Register mapping {#regmap}
+## Register mapping
 
 QEMU has a very simple and verbose way of describing registers of a component.
 
@@ -192,7 +193,7 @@ For each register, it's offset from the base address is specified, as well as bi
 
 <br />
 
-Register description for our [custom component](#mmdev) can be described as
+Register description for our [custom component](#designing-custom-memory-mapped-device-in-qemu) can be described as
 
 ```c
 REG32(CTRL, 0x00)
@@ -266,7 +267,7 @@ For instance, after `CTRL` register bit `EN` bit is set to 1, the `DATA` values 
 
 Before we go into details of `post_write` functions, it would be useful to first explain how is `DATA` register periodically incremented, as well as how are interrupts implemented in QEMU code.
 
-## QEMU timers {#timer}
+## QEMU timers
 
 QEMU uses timers to enable periodical execution. Timers have a simple API (described in `hw/ptimer.h`) which we will go over in this section.
 
@@ -361,7 +362,7 @@ This way the BCD requirement is met and counting will look like in the following
 
 ![BCD counting](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgCgpisXpci03il0veNqAdvm1GjZ8ZcJ0yD7KRmQe9Nwiz6Tu_VMUAceyDxppPyc3PD45VrO3yDGow5-AFHK3rFdapA3R3oZmHYn1EBexrT5obSbNWHCI8FkbGQ2QnFL1r4WeFEAV4nKySie3oIqjDhhdJBKDFlPgn0Os6Vgx9-MUirSuzyzzN26DYt/s720/bcd.png)
 
-## QEMU interrupt handling {#irq}
+## QEMU interrupt handling
 
 Interrupt handling in peripheral in QEMU is performed using the `qemu_set_irq` function. The function receives an additional parameter which indicates whether interrupt is pending or not. If interrupt is pending (and is not masked in the interrupt controller) it will be raised to the CPU.
 
@@ -377,7 +378,7 @@ static void mm_sens_update_irq(MMSensor *s)
 }
 ```
 
-# Integrating with board file and build system {#board}
+# Integrating with board file and build system
 
 In order to use the custom memory mapped peripheral, it must be 'placed' in the memory map of the emulated board. Since we are using Versatile Express A9, then it's description must be updated.
 
@@ -404,7 +405,7 @@ $ patch -p1 < BCD-memory-mapped.patch
 
 After the patch is applied, QEMU must be rebuilt.
 
-# Testing developed peripheral {#test}
+# Testing developed peripheral
 
 Testing peripheral without appropriate Linux device driver is a bit harder, but not impossible.
 
@@ -462,7 +463,7 @@ U-Boot> md 0x10018008 1
 
 We can also check that the `IFG` in `STATUS` register is set. However, interrupt is not triggered since handling of this interrupt is not implemented in U-Boot, which is expected. We will implement interrupt handling in the next blog post, when we develop the Linux device driver for this component.
 
-# Summary {#summary}
+# Summary
 
 In this blog post the process of developing a custom memory-mapped peripheral for QEMU is shown. Main details are described and the complete patch is available with full details of the component.
 

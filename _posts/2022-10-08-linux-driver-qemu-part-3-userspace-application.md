@@ -10,16 +10,16 @@ In the [previous post](https://straxy.github.io/2022/08/14/linux-driver-qemu-par
 
 In this post we will cover the following things
 
-1. [Developing userspace application for designed memory-mapped device](#developing-userspace-application-for-designed-memory-mapped-device)
-   1. [Device initialization](#device-initialization)
-   2. [Interrupt handling (poll)](#interrupt-handling-poll)
-2. [Coding ideas](#coding-ideas)
-3. [Building application manually](#building-application-manually)
-   1. [Using `arm-none-linux-gnueabihf`](#using-arm-none-linux-gnueabihf)
-   2. [Using Yocto SDK](#using-yocto-sdk)
-4. [Adding application to Yocto](#adding-application-to-yocto)
-5. [Testing application](#testing-application)
-6. [Summary](#summary)
+- [Developing userspace application for designed memory-mapped device](#developing-userspace-application-for-designed-memory-mapped-device)
+  - [Device initialization](#device-initialization)
+  - [Interrupt handling (poll)](#interrupt-handling-poll)
+- [Coding ideas](#coding-ideas)
+- [Building application manually](#building-application-manually)
+  - [Using `arm-none-linux-gnueabihf`](#using-arm-none-linux-gnueabihf)
+  - [Using Yocto SDK](#using-yocto-sdk)
+- [Adding application to Yocto](#adding-application-to-yocto)
+- [Testing application](#testing-application)
+- [Summary](#summary)
 
 # Developing userspace application for designed memory-mapped device
 
@@ -79,7 +79,7 @@ The resulting `mmsens-app` binary file will be in the `build` directory.
 
 Yocto can be used to create and SDK which includes all required development libraries and build tools.
 
-In order to build the SDK, process similar to building image (presented in [part 4 of QEMU Board emulation](https://straxy.github.io/2022/04/23/qemu-board-emulation-part-4-vexpress-yocto/#qemu)) with additinal parameter of `-c populate_sdk`.
+In order to build the SDK, process similar to building image (presented in [part 4 of QEMU Board emulation](https://straxy.github.io/2022/04/23/qemu-board-emulation-part-4-vexpress-yocto/#building-and-running-images)) with additional parameter of `-c populate_sdk`.
 
 ```bash
 $ source setup-environment build_framebuffer
@@ -134,7 +134,7 @@ inherit cmake
 
 Only other thing needed is to add `mmsens-app` to `IMAGE_INSTALL` variable in the image recipe, and the application will be included in the final output image.
 
-After recipe is added, the image can be built and loaded by following instructions from [part 4 of QEMU Board emulation](https://straxy.github.io/2022/04/23/qemu-board-emulation-part-4-vexpress-yocto/#qemu).
+After recipe is added, the image can be built and loaded by following instructions from [part 4 of QEMU Board emulation](https://straxy.github.io/2022/04/23/qemu-board-emulation-part-4-vexpress-yocto/#building-and-running-images).
 
 # Testing application
 

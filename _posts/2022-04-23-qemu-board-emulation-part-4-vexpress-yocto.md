@@ -14,21 +14,27 @@ In this post I will cover the Yocto setup for Vexpress-A9 board. Using Yocto we 
 
 Items that will be covered are
 
-1. [Yocto introduction](#intro)
-2. [Base Yocto setup](#base)
-3. [Distribution configuration](#distro)
-4. [Machine configuration](#machine)
-5. [U-boot recipe](#uboot)
-6. [Linux kernel recipe](#linux)
-7. [Image recipe](#image)
-8. [Building and running images in QEMU](#qemu)
+- [Yocto introduction](#yocto-introduction)
+- [Base Yocto setup](#base-yocto-setup)
+- [Distribution configuration](#distribution-configuration)
+- [Machine configuration](#machine-configuration)
+- [U-boot recipe](#u-boot-recipe)
+- [Linux kernel recipe](#linux-kernel-recipe)
+- [Image recipe](#image-recipe)
+- [Building and running images in QEMU](#building-and-running-images-in-qemu)
+  - [Prerequisites](#prerequisites)
+  - [Preparing environment](#preparing-environment)
+  - [Building and running images](#building-and-running-images)
+  - [Framebuffer image](#framebuffer-image)
+  - [X11 image and Sato](#x11-image-and-sato)
+- [Summary](#summary)
 
 Sources for the Yocto build environment for Vexpress-A9 can be found in following repositories:
 
 * [https://github.com/straxy/qemu-vexpress-yocto](https://github.com/straxy/qemu-vexpress-yocto) - base repository used to initialize Yocto environment
 * [https://github.com/straxy/meta-vexpress](https://github.com/straxy/meta-vexpress) - `meta-vexpress` layer containing distro, machine and images configuration, as well as recipes for bootloader and linux kernel
 
-# Yocto introduction {#intro}
+# Yocto introduction
 
 [Yocto](https://www.yoctoproject.org/) is tool used to build Board Support Package (BSP) and Linux distributions, especially for embedded targets. It is very configurable and provides fine grained control of output images.
 
@@ -38,7 +44,7 @@ For more details about Yocto [Bootling Yocto training slides](https://bootlin.co
 
 I tried to use the Freescale/NXP Yocto organization as a reference when creating these layers, so method of use is very similar to the method when working with iMX SoCs.
 
-# Base Yocto setup {#base}
+# Base Yocto setup
 
 As stated previously, the base repository holds the manifest file and base configuration.
 
@@ -67,7 +73,7 @@ The `poky` and `meta-oe` layers provide base applications and images, which can 
 
 The `setup-environment` script is used to initialize a build environment. Part of it initializes the `bblayers.conf` and `local.conf` based on the input files in the `templates` directory.
 
-# Distribution configuration {#distro}
+# Distribution configuration
 
 Distribution configuration is in the `meta-vexpress` layer, in the [conf/distro](https://github.com/straxy/meta-vexpress/tree/main/conf/distro) directory.
 
@@ -78,13 +84,13 @@ Two distributions are configured:
 
 Selection of distribution is made at compile time by passing either `mistra-framebuffer` or `mistra-x11` to the `DISTRO` variable.
 
-# Machine configuration {#machine}
+# Machine configuration
 
 Machine configuration is in the `meta-vexpress` layer, in the [conf/machine](https://github.com/straxy/meta-vexpress/tree/main/conf/machine) directory.
 
 Machine has definitions output images that should be built, as well as parameters for U-Boot and Linux kernel. This way, differences between machines can be kept in separate files and same distribution can be used for different machines.
 
-# U-boot recipe {#uboot}
+# U-boot recipe
 
 The goal with this exercise is to use the same software versions as in [part 2](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) of the blog post series.
 
@@ -96,11 +102,11 @@ In the `u-boot-scr` directory is recipe used to build a u-boot script. The u-boo
 
 The commands are in [boot.cmd](https://github.com/straxy/meta-vexpress/blob/main/recipes-bsp/u-boot-scr/files/boot.cmd) file, and instructions on how this script can be manually built are in the `do_compile` step of the [u-boot-scr.bb](https://github.com/straxy/meta-vexpress/blob/main/recipes-bsp/u-boot-scr/u-boot-scr.bb) recipe.
 
-# Linux kernel recipe {#linux}
+# Linux kernel recipe
 
 Linux recipe is stored in the [recipes-kernel](https://github.com/straxy/meta-vexpress/tree/main/recipes-kernel/linux). It selects the appropriate git commit in order to have the same version as in [part 2](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) of the blog post series.
 
-# Image recipe {#image}
+# Image recipe
 
 Image recipe is stored in the [recipes-extended/images](https://github.com/straxy/meta-vexpress/blob/main/recipes-extended/images/core-image-test.bb) directory.
 
@@ -108,7 +114,7 @@ This is a copy of the `core-image-minimal` image supplied from Yocto, but can be
 
 Another image that will be used is `core-image-sato`, which uses graphical environment.
 
-# Building and running images in QEMU {#qemu}
+# Building and running images in QEMU
 
 ## Prerequisites
 
@@ -143,7 +149,7 @@ $ source setup-environment <build_dir>
 
 where `<build_dir>` is custom directory where build will be performed and output files stored. After this command is executed current directory is automatically changed to `build_dir`.
 
-## Building and running images {#qemu}
+## Building and running images
 
 The build is started using the following command
 

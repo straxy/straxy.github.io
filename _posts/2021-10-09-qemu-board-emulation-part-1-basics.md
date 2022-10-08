@@ -9,13 +9,22 @@ tags: linux qemu u-boot
 In the [previous post](https://straxy.github.io/2020/12/29/qemu-board-emulation-part-0/) I presented some of the goals for doing this work with QEMU.
 
 In this post I will cover the following things
-
-1. [Compiling QEMU for emulation of ARM boards](#qemu)
-2. [Obtaining cross-compilation toolchain](#toolchain)
-3. [Compiling U-Boot](#u-boot)
-4. [Compiling Linux kernel](#linux)
-5. [Simple "ramdisk"](#rootfs)
-6. [Summary](#summary)
+- [Building QEMU](#building-qemu)
+  - [Downloading source code](#downloading-source-code)
+  - [Configuring and building](#configuring-and-building)
+  - [Running QEMU](#running-qemu)
+- [Getting toolchain](#getting-toolchain)
+- [Building U-Boot](#building-u-boot)
+  - [Downloading source code](#downloading-source-code-1)
+  - [Configuring and building](#configuring-and-building-1)
+  - [Running U-Boot inside QEMU](#running-u-boot-inside-qemu)
+- [Building Linux kernel](#building-linux-kernel)
+  - [Downloading source code](#downloading-source-code-2)
+  - [Configuring and building](#configuring-and-building-2)
+  - [Running U-Boot and Linux inside QEMU](#running-u-boot-and-linux-inside-qemu)
+- [Simple "ramdisk"](#simple-ramdisk)
+  - [Hello, world!](#hello-world)
+- [Summary](#summary)
 
 At the end of this post we will have a working QEMU, and starting point for U-Boot and Linux kernel which can be used for further work. A simple init ramdsik will be used instead of root filesystem, so the Linux kernel does not panic on boot. In the next post a real root filesystem will be used.
 
@@ -44,7 +53,7 @@ The development will be done in the `/home/user/qemu_devel` directory, and that 
 
 <br />
 
-# <a name="qemu"></a> Building QEMU
+# Building QEMU
 
 The latest stable version at the time of writing is 6.1.0.
 
@@ -180,7 +189,7 @@ qemu-system-arm <switch> ?
 
 Before using QEMU we need an executable file to run, so we will proceed to obtaining toolchain and building U-Boot.
 
-# <a name="toolchain"></a> Getting toolchain
+# Getting toolchain
 
 The cross-compilation toolchain for ARM architecture can obtained in various ways: get a prebuilt from [ARM/Linaro](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain) or [Bootlin](https://toolchains.bootlin.com/), or build a custom toolchain using [crosstool-NG](https://crosstool-ng.github.io/).
 
@@ -203,7 +212,7 @@ export PATH=$PROJ_DIR/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin:$
 
 This way, before cross-compiling any part of the code it is enough just to source the `$PROJ_DIR/env.sh` script.
 
-# <a name="u-boot"></a> Building U-Boot
+# Building U-Boot
 
 Even though QEMU can be used without the bootloader, where Linux kernel image, device tree blob and kernel command line are passed, in this blog series the goal is to emulate also the boot process. We will use [U-Boot](https://www.denx.de/wiki/U-Boot) as bootloader, but [Barebox](https://www.barebox.org/) can also be used.
 
@@ -298,7 +307,7 @@ Hit any key to stop autoboot:  0
 
 After testing, exit QEMU with `Ctrl+A`,`x`.
 
-# <a name="linux"></a> Building Linux kernel
+# Building Linux kernel
 
 Latest stable kernel at the time of writing is 5.14.3
 
@@ -426,7 +435,7 @@ The second command start the boot of the Linux kernel, where parameters that are
 
 After executing these commands, the Linux kernel will panic since there is no root filesystem, which is expected.
 
-# <a name="rootfs"></a>Simple "ramdisk"
+# Simple "ramdisk"
 
 What is actually a root filesystem? It is a set of files and directories organized in a certain way. Those files and directories can be on a physical medium (HDD, SD card, eMMC, Flash memory), a remote location (NFS boot), but also can be executed from RAM in case the init ramdisk/ramfs is used.
 
@@ -523,8 +532,8 @@ In kernel arguments there are now two additional
 
 Once kernel boots, it will run the `hello` application and print "Hello, world!".
 
-# <a name="summary"></a> Summary
+# Summary
 
 In this post the basic steps building U-Boot and Linux kernel were covered. This is still far from the actual use-case for an embedded Linux system, since root filesystem is missing.
 
-The root filesystem will be covered in the [next post](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/"), together with steps for running bootloader and Linux kernel from different mediums, which will be similar to the way and embedded Linux is used on real development boards.
+The root filesystem will be covered in the [next post](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running"), together with steps for running bootloader and Linux kernel from different mediums, which will be similar to the way and embedded Linux is used on real development boards.

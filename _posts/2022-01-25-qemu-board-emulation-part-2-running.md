@@ -11,13 +11,30 @@ In the [previous post](https://straxy.github.io/2021/10/09/qemu-board-emulation-
 
 In this post I will cover the following things
 
-1. [Obtaining Ubuntu root filesystem](#ubuntu)
-2. [Booting and running from SD card](#sdcard)
-3. [Using TFTP to boot and running from NFS root filesystem](#tftp-nfs)
-   * [Enable network in QEMU](#network)
-4. [Github helper scripts](#scripts)
+- [Obtaining Ubuntu root filesystem](#obtaining-ubuntu-root-filesystem)
+  - [Download Ubuntu root filesystem](#download-ubuntu-root-filesystem)
+- [Booting and running from SD card](#booting-and-running-from-sd-card)
+  - [Preparing SD card image](#preparing-sd-card-image)
+    - [Creating an empty SD card image](#creating-an-empty-sd-card-image)
+    - [Partitioning SD card image](#partitioning-sd-card-image)
+    - [Formatting partitions](#formatting-partitions)
+  - [Copying data to SD card image](#copying-data-to-sd-card-image)
+    - [Boot partition](#boot-partition)
+    - [Root filesystem partition](#root-filesystem-partition)
+  - [Running QEMU with SD card image](#running-qemu-with-sd-card-image)
+- [Using TFTP to boot and running from NFS root filesystem](#using-tftp-to-boot-and-running-from-nfs-root-filesystem)
+  - [TFTP server](#tftp-server)
+    - [Set up TFTP server](#set-up-tftp-server)
+  - [NFS root filesystem](#nfs-root-filesystem)
+    - [Set up NFS server](#set-up-nfs-server)
+  - [Running QEMU with TFTP and NFS server](#running-qemu-with-tftp-and-nfs-server)
+    - [Enable network in QEMU](#enable-network-in-qemu)
+    - [Run QEMU with network](#run-qemu-with-network)
+    - [Enable internet access in QEMU with NAT and tap](#enable-internet-access-in-qemu-with-nat-and-tap)
+- [Github helper scripts](#github-helper-scripts)
+- [Summary](#summary)
 
-# <a name="ubuntu"></a> Obtaining Ubuntu root filesystem
+# Obtaining Ubuntu root filesystem
 
 There are several ways to obtain root filesystem for an embedded system
 
@@ -38,7 +55,7 @@ $ wget -c https://rcn-ee.net/rootfs/eewiki/minfs/ubuntu-20.04.3-minimal-armhf-20
 
 Now that we have the Ubuntu root filesystem, it needs to be supplied to the Linux running under QEMU. Two options are to create a SD card image or to access it over network, and both will be covered in the following sections.
 
-# <a name="sdcard"></a> Booting and running from SD card
+# Booting and running from SD card
 
 QEMU supports emulation of the SD card interface. Depending on the board that is emulated, different SD card interfaces are available.
 
@@ -252,7 +269,7 @@ arm login:
 
 ![Booting Linux with Ubuntu rootfs](https://blogger.googleusercontent.com/img/a/AVvXsEjdlRr_Hm3805hS5C-BmVmQPl9bdyVp1nOC621Yaod7Nf6hZxXqIBlJLfOfSlnoiyH2O_qn18Nf6gW5ffwdoqDNsQX2dPfm7lK_mQX_UmVlyvjYrDJGKQepflz_-5zZBi10UHEbS6QBKqN65TwySOX2OJeJWOjIsCuzCcef9Cq4VK33cpXyXwQW7wve=s16000)
 
-# Using TFTP to boot and running from NFS root filesystem {#tftp-nfs}
+# Using TFTP to boot and running from NFS root filesystem
 
 If the board has a network connection, then kernel files can be loaded from a remote location. Also, root filesystem can be accessed from a remote location.
 
@@ -331,7 +348,7 @@ In this example, we will use the `tap` interface to enable network connection.
 
 More details about QEMU networking support can be found [here](https://wiki.qemu.org/Documentation/Networking).
 
-### Enable network in QEMU {#network}
+### Enable network in QEMU
 
 The `tap` interface can be configured in the following way
 
@@ -494,7 +511,7 @@ PING www.google.com (142.250.74.36) 56(84) bytes of data.
 rtt min/avg/max/mdev = 6.888/7.889/9.569/1.092 ms
 ```
 
-# Github helper scripts {#scripts}
+# Github helper scripts
 
 In [this repository](https://github.com/straxy/qemu-board-emulation) I have added several scripts which cover most of the things presented in Parts 1 and 2.
 

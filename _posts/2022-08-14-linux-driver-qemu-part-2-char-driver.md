@@ -10,16 +10,21 @@ In the [previous post](https://straxy.github.io/2022/06/25/linux-driver-qemu-par
 
 In this post I will cover the following things
 
-1. [Developing character device driver for the designed memory-mapped device](#driver)
-   * [Platform driver](#plat)
-   * [Chardev operations](#rw)
-   * [Sysfs attributes](#sysfs)
-2. [Building driver out-of-tree](#module)
-3. [Adding driver to Yocto](#yocto)
-4. [Testing driver](#test)
-5. [Summary](#summary)
+- [Developing character device driver for the designed memory-mapped device](#developing-character-device-driver-for-the-designed-memory-mapped-device)
+	- [Platform driver](#platform-driver)
+		- [Device Tree description](#device-tree-description)
+		- [Platform driver for memory-mapped peripheral](#platform-driver-for-memory-mapped-peripheral)
+	- [Chardev operations](#chardev-operations)
+	- [Sysfs attributes](#sysfs-attributes)
+- [Building driver out-of-tree](#building-driver-out-of-tree)
+- [Adding driver to Yocto](#adding-driver-to-yocto)
+- [Testing driver](#testing-driver)
+	- [Data incrementing](#data-incrementing)
+	- [Frequency change](#frequency-change)
+	- [Interrupt generation](#interrupt-generation)
+- [Summary](#summary)
 
-# Developing character device driver for the designed memory-mapped device {#driver}
+# Developing character device driver for the designed memory-mapped device
 
 The driver for the custom memory-mapped device should provide interface for user space applications to use the custom-memory mapped peripheral. This means that all bit-fields can be read and modified by a user-space application.
 
@@ -27,7 +32,7 @@ The device first needs to be 'recognized' by the system for which we will use De
 
 After device is recognized by the system, we need to have some methods to access and modify registers of our custom memory-mapped peripheral, and we will use character device driver structures with sysfs attributes.
 
-## Platform driver {#plat}
+## Platform driver
 
 Peripherals can be connected to the processor directly (via 'platform' bus, like our memory-mapped peripheral) and also via external busses: I2C, SPI, UART, USB, PCI, etc. Some of these busses support dynamic enumeration of devices (USB, PCI), but for others there needs to be a way to let the system know what is present in those busses.
 
@@ -123,7 +128,7 @@ static irqreturn_t mmsens_isr(int irq, void *data)
 
 In the simplest scenario the `.remove` callback does not need to do anything, but once we add the character device operations it will change.
 
-## Chardev operations {#rw}
+## Chardev operations
 
 So far, the platform driver only allows us to match the driver with the device when Device Tree description is parsed.
 
@@ -172,7 +177,7 @@ static struct file_operations mmsensdev_fops = {
 
 The details of the implementation are available in the [github](https://github.com/straxy/mmsens-drv) repository.
 
-## Sysfs attributes {#sysfs}
+## Sysfs attributes
 
 The character device operations allow only reading or writing of raw data to the device. However, since our device has several registers and supports different operations, we need an additional interface to be able to control it.
 
@@ -209,7 +214,7 @@ static ssize_t data_show(struct device *child, struct device_attribute *attr, ch
 
 The details of the implementation are available in [github](https://github.com/straxy/mmsens-drv) repository.
 
-# Building driver out-of-tree {#module}
+# Building driver out-of-tree
 
 The kernel driver can be provided in two ways: as part of the kernel source code, or as an out-of-tree entity. In first case, using the kernel configuration (`menuconfig` for instance) it can be selected whether driver will be built into the kernel, or as a separate kernel module (`.ko` extension). In the out-of-tree build, kernel header files are needed and driver can be built as a kernel module file.
 
@@ -226,7 +231,7 @@ all:
 
 After executing `make` command, the `mmsensdrv.ko` file would be available and can be transferred to the SD card and tested.
 
-# Adding driver to Yocto {#yocto}
+# Adding driver to Yocto
 
 If we want to add driver to Yocto a new recipe has to be created. The template (skeleton) exists at `poky/meta-skeleton/recipes-kernel/hello-mod` and we will reuse it.
 
@@ -260,7 +265,7 @@ IMAGE_INSTALL += "kernel-module-mmsens-drv"
 
 After these changes have been added, the image can be rebuilt and run inside QEMU.
 
-# Testing driver {#test}
+# Testing driver
 
 Once Linux kernel is started inside QEMU, the module can be loaded. If `mmsensdrv.ko` is copied to the SD card manually, it can me loaded into the kernel with
 
@@ -373,7 +378,7 @@ $ cat /proc/interrupts | grep mmsens
  40:          1     GIC-0  61 Level     10018000.mmsens
 ```
 
-# Summary {#summary}
+# Summary
 
 In this blog post a simple character device platform driver is presented. The driver allows initialization and bit-field access of memory mapped peripheral.
 
@@ -383,4 +388,4 @@ The driver itself handles interrupt, but we have not gone into processing that e
 
 <br />
 
-Next step is to develop a user space application which will be able to initialize device using the driver, as well as receive information about received interrupt and process updated data. This will be done in [next blog post](#) in this series.
+Next step is to develop a user space application which will be able to initialize device using the driver, as well as receive information about received interrupt and process updated data. This will be done in [next blog post](https://straxy.github.io/2022/10/08/linux-driver-qemu-part-3-userspace-application/) in this series.

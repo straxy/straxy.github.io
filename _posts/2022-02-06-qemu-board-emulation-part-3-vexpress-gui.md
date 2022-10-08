@@ -9,12 +9,15 @@ tags: ubuntu graphics linux qemu
 In the [previous post](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) the complete boot procedure from SD card or network boot has been presented.
 
 In this post I will cover the following things
-1. [Modifying Linux kernel configuration](#kernel)
-2. [Enabling graphics in Ubuntu minimal](#ubuntu)
+
+- [Modifying Linux kernel configuration](#modifying-linux-kernel-configuration)
+  - [Updating kernel config manually](#updating-kernel-config-manually)
+- [Enabling graphics in Ubuntu minimal](#enabling-graphics-in-ubuntu-minimal)
+- [Summary](#summary)
 
 The goal is to use the emulated Versatile express board to display some simple graphics. This is also a very good feature of QEMU, where graphical applications can be run for some of the emulated boards.
 
-# Modifying Linux kernel configuration {#kernel}
+# Modifying Linux kernel configuration
 
 Versatile Express V2P-CA9 has the PL111 LCD display controller which is emulated in QEMU. The LCD controller is connected to a SiI9022 display bridge controlled over an I2C bus, and a Versatile display panel. However, none of it is not enabled by default in the Linux configuration.
 
@@ -135,7 +138,7 @@ $ make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabihf- O=build_vexpress olddefc
 
 After this the build can be started and `prepare-qemu.bash` script can be used to prepare the new SD card.
 
-# Enabling graphics in Ubuntu minimal {#ubuntu}
+# Enabling graphics in Ubuntu minimal
 
 In order to enable graphics in the Ubuntu minimal image, we need to boot the image and install apropriate packages.
 
