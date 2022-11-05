@@ -13,6 +13,7 @@ title: Tags
     <li><a href="/tag/linux"><code class="highligher-rouge"><nobr>linux</nobr></code></a></li>
     <li><a href="/tag/memory-mapped"><code class="highligher-rouge"><nobr>memory mapped</nobr></code></a></li>
     <li><a href="/tag/qemu"><code class="highligher-rouge"><nobr>qemu</nobr></code></a></li>
+    <li><a href="/tag/qt6"><code class="highligher-rouge"><nobr>qt6</nobr></code></a></li>
     <li><a href="/tag/u-boot"><code class="highligher-rouge"><nobr>u-boot</nobr></code></a></li>
     <li><a href="/tag/ubuntu"><code class="highligher-rouge"><nobr>ubuntu</nobr></code></a></li>
     <li><a href="/tag/userspace"><code class="highligher-rouge"><nobr>userspace</nobr></code></a></li>

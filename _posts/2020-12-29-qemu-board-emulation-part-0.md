@@ -36,3 +36,4 @@ Quick links to other posts in the series:
 * [Part 2 - Running the system](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) : covers root filesystem handling and booting from SD card or over network (TFTP+NFS)
 * [Part 3 - Vexpress GUI](https://straxy.github.io/2022/02/06/qemu-board-emulation-part-3-vexpress-gui/) : covers Linux kernel configuration in an attempt to display graphics
 * [Part 4 - Vexpress Yocto](https://straxy.github.io/2022/04/23/qemu-board-emulation-part-4-vexpress-yocto/) : covers Yocto configuration for parts 2 and 3 of the blog series, so distribution and image can be built
+* [Part 5 - Qt6 Yocto](https://straxy.github.io/2022/11/05/qemu-board-emulation-part-5-vexpress-yocto-qt6/) : covers Qt6 application development and Yocto integration
