@@ -9,7 +9,7 @@ tags: memory-mapped ubuntu yocto userspace cmake cpp linux qemu device-driver
 In the [previous post](https://straxy.github.io/2022/08/14/linux-driver-qemu-part-2-char-driver/) structure of a Linux device driver for the custom memory-mapped peripheral in QEMU was shown.
 
 In this post we will cover the following things
-
+<!--more-->
 - [Developing userspace application for designed memory-mapped device](#developing-userspace-application-for-designed-memory-mapped-device)
   - [Device initialization](#device-initialization)
   - [Interrupt handling (poll)](#interrupt-handling-poll)
