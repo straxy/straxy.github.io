@@ -11,7 +11,7 @@ In the previous blog series [QEMU board emulation](https://straxy.github.io/2020
 In this blog post series I will go deeper into the topics of device driver and userspace application development for embedded Linux systems.
 
 We will continue using QEMU for testing. There are multiple benefits from using QEMU over some standard COTS board:
-
+<!--more-->
 * it is cheaper, there is no need to buy additional hardware, also making it easier to try and follow
 * 'new' hardware can be designed in QEMU, compared to COTS board where hardware cannot change and drivers are already available
   * even if we consider connecting peripherals over external parallel or serial busses as 'changing the COTS board', drivers already exist even for those peripherals
