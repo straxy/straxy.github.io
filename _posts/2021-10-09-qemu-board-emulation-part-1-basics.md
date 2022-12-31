@@ -9,6 +9,7 @@ tags: linux qemu u-boot
 In the [previous post](https://straxy.github.io/2020/12/29/qemu-board-emulation-part-0/) I presented some of the goals for doing this work with QEMU.
 
 In this post I will cover the following things
+<!--more-->
 - [Building QEMU](#building-qemu)
   - [Downloading source code](#downloading-source-code)
   - [Configuring and building](#configuring-and-building)

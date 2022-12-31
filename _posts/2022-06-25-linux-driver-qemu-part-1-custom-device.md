@@ -9,7 +9,7 @@ tags: memory-mapped device-tree linux qemu u-boot
 In the [previous post](https://straxy.github.io/2022/05/19/linux-device-driver-development-qemu/) I presented some of the goals for doing this work with QEMU.
 
 In this post I will cover the following things
-
+<!--more-->
 - [Designing custom memory-mapped device in QEMU](#designing-custom-memory-mapped-device-in-qemu)
   - [Register map](#register-map)
   - [Fitting into Vexpress-A9 memory map](#fitting-into-vexpress-a9-memory-map)

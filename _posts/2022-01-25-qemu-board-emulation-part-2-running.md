@@ -10,7 +10,7 @@ In the [previous post](https://straxy.github.io/2021/10/09/qemu-board-emulation-
 
 
 In this post I will cover the following things
-
+<!--more-->
 - [Obtaining Ubuntu root filesystem](#obtaining-ubuntu-root-filesystem)
   - [Download Ubuntu root filesystem](#download-ubuntu-root-filesystem)
 - [Booting and running from SD card](#booting-and-running-from-sd-card)

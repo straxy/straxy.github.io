@@ -9,7 +9,7 @@ tags: ubuntu graphics linux qemu
 In the [previous post](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-running/) the complete boot procedure from SD card or network boot has been presented.
 
 In this post I will cover the following things
-
+<!--more-->
 - [Modifying Linux kernel configuration](#modifying-linux-kernel-configuration)
   - [Updating kernel config manually](#updating-kernel-config-manually)
 - [Enabling graphics in Ubuntu minimal](#enabling-graphics-in-ubuntu-minimal)

@@ -8,6 +8,8 @@ There are many cheap COTS (Commercial Off-The-Shelf) development boards availabl
 
 The benefit of using COTS platform is that there are **A LOT** of available resources and examples, so one can create (mostly) functional prototype in a very short time. And this is good for someone who needs a quick solution for some problem without the need to go go into all the details.
 
+<!--more-->
+
 However, for someone who wishes to go deeper into Embedded linux, boot process, optimization, driver development, etc, the COTS platform can provide only limited experience. Yes, one can develop drivers for some devices connected over external serial busses (even though someone has probably already developed a driver for that device), but that is about everything that can be done. There is no playing with memory maps, system-level device tree, bootloader adjustment, i.e. all of the things that are done when a custom board needs to be brought up.
 
 One solution is to use development board based on <abbr title="System on Chip">SoC</abbr> which combines Hard CPU core and FPGA parts, like [Xilinx Zynq](https://www.xilinx.com/products/silicon-devices/soc/zynq-7000.html) or [Altera Cyclone](https://www.intel.com/content/www/us/en/products/programmable/soc/cyclone-v.html). This SoC allows custom memory mapped hardware to be developed, which would require the developer to create a novel driver and learn a lot in the process. However, the 'creative' process is limited only to certain devices, not the system as a whole.

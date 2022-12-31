@@ -11,7 +11,7 @@ In parts [2](https://straxy.github.io/2022/01/25/qemu-board-emulation-part-2-run
 In both posts Ubuntu was used as root filesystem. Using Ubuntu as root filesystem is simple and fast to use, but it also has a lot of packages which are not necessary.
 
 In this post I will cover the Yocto setup for Vexpress-A9 board. Using Yocto we will be able to build a custom distribution which will allow us to run Linux with or without GUI on QEMU Vexpress-A9.
-
+<!--more-->
 Items that will be covered are
 
 - [Yocto introduction](#yocto-introduction)

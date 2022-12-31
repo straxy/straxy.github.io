@@ -9,7 +9,7 @@ tags: memory-mapped ubuntu yocto device-tree linux qemu device-driver
 In the [previous post](https://straxy.github.io/2022/06/25/linux-driver-qemu-part-1-custom-device/) I presented the steps for creating a custom memory-mapped peripheral in QEMU.
 
 In this post I will cover the following things
-
+<!--more-->
 - [Developing character device driver for the designed memory-mapped device](#developing-character-device-driver-for-the-designed-memory-mapped-device)
 	- [Platform driver](#platform-driver)
 		- [Device Tree description](#device-tree-description)

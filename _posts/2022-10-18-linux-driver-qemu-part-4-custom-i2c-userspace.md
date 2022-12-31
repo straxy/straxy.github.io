@@ -9,7 +9,7 @@ tags: i2c yocto userspace cmake cpp linux qemu
 After showing custom memory-mapped sensor and it's handing in previous posts, we will now take a look at I2C peripheral.
 
 In this post we will cover the following things
-
+<!--more-->
 - [Custom I2C QEMU peripheral](#custom-i2c-qemu-peripheral)
   - [Peripheral description](#peripheral-description)
   - [Peripheral implementation](#peripheral-implementation)

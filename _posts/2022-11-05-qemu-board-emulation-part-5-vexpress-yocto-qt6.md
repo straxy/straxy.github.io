@@ -9,7 +9,7 @@ tags: yocto linux qemu qt6
 In the [previous post](https://straxy.github.io/2022/04/23/qemu-board-emulation-part-4-vexpress-yocto/) I showed how to use Yocto to build an image for Vexpress-A9 board. Yocto allows us to build a custom distribution and to streamline bootloader and kernel cross-compilation and handling.
 
 In the [Linux device driver development post series](https://straxy.github.io/2022/05/19/linux-device-driver-development-qemu/) I showed custom memory-mapped and I2C devices for QEMU, and device driver and userspace application development for those devices. The userspace applications that were presented are usable from command line only, to demonstrate the desired functionality.
-
+<!--more-->
 <br />
 
 In real embedded systems, the use of non-GUI (command line only) applications is enough if the unit has no display. In that case data can be published to the outside world over some interface (usually network interface). We will cover this in some of the future posts.
