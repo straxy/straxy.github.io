@@ -6,7 +6,7 @@ tags: linux qemu u-boot
 
 There are many cheap COTS (Commercial Off-The-Shelf) development boards available for playing with and learning Embedded linux: [Raspberry Pi](https://www.raspberrypi.org/), [BeagleBone](https://beagleboard.org/bone), [OrangePi](http://www.orangepi.org/) ...
 
-The benefit of using COTS platform is that there are **A LOT** of available resources and examples, so one can create (mostly) functional prototype in a very short time. And this is good for someone who needs a quick solution for some problem without the need to go go into all the details.
+The benefit of using COTS platform is that there are **A LOT** of available resources and examples, so one can create (mostly) functional prototype in a very short time. And this is good for someone who needs a quick solution for some problem without the need to go into all the details.
 
 <!--more-->
 
