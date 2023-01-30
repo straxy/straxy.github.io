@@ -5,7 +5,7 @@ title: About
 
 Hi! I am Strahinja, the author of the Embedded Journey.
 
-I taught different Embedded Systems and Embedded Linux courses (among others) at University of Belgrade - School of Electrical Engineering.
+I taught different Embedded Systems and Embedded Linux courses (among others) at University of Belgrade - School of Electrical Engineering (until mid-2021).
 
 I have also been working with Embedded software since 2011, working on all kinds of Embedded software development (baremetal, RTOS, Linux) in C/C++ and often Python.
 
